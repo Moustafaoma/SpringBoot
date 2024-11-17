@@ -24,6 +24,12 @@ public class EmployeeJDBCRepo implements IEmployeeRepos {
     }
 
     @Override
+    public Employee findById(Long id) {
+       String sql="SELECT * FROM employees WHERE id = ?";
+        return jdbcTemplate.queryForObject(sql, employeeRowMapper(), id);
+    }
+
+    @Override
     public int save(Employee employee) {
         try {
             String sql = "INSERT INTO employees (id, name, email, department_id) VALUES (emp_seq.NEXTVAL, ?, ?, ?)";

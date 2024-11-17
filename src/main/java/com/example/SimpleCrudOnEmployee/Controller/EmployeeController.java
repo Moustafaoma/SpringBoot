@@ -21,6 +21,10 @@ public class EmployeeController {
     public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
     }
+    @GetMapping("/{id}")
+    public Employee getEmployeeById(@PathVariable Long id) {
+        return employeeRepository.findById(id);
+    }
 
     @PostMapping
     @Transactional
@@ -44,6 +48,7 @@ public class EmployeeController {
         return ResponseEntity.ok("Employee deleted successfully!");
 
     }
+
     @GetMapping("/count")
     public  int getCount(){
        return employeeRepository.Count();
